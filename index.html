@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html style="scroll-behavior: smooth;">
+  <button onclick="scrollToTop()" id="scrollToTopBtn" title="Scroll to Top"></button>
+<head>
+  <link rel="icon" type="image/png" href="favicon.png">
+    <title>AtomicSMP - Home☢</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&amp;family=Quicksand:wght@400;600;700&amp;family=Rubik:wght@300;400;600&amp;display=swap" rel="stylesheet">
+    <script>
+window.addEventListener('load', function() {
+  if (window.location.hash === '#About') {
+    const aboutSection = document.getElementById('About');
+    if (aboutSection) {
+      const aboutSectionTop = aboutSection.offsetTop;
+      window.scrollTo({ top: aboutSectionTop, behavior: 'smooth' });
+    }
+  }
+});
+  </script>
+  <script>window.addEventListener('scroll', function() {
+  var scrollToTopBtn = document.getElementById('scrollToTopBtn');
+  
+  if (window.scrollY > window.innerHeight * 0.2) {
+    scrollToTopBtn.style.marginTop = '0px';
+  } else {
+    scrollToTopBtn.style.marginTop = '80px';
+  }
+  
+  // Update the position of the button to stay fixed at the bottom of the viewport
+  var viewportHeight = window.innerHeight;
+  var buttonHeight = scrollToTopBtn.offsetHeight;
+  var buttonOffset = 20;
+  var scrollPosition = window.scrollY + viewportHeight - buttonHeight - buttonOffset;
+  scrollToTopBtn.style.bottom = buttonOffset + 'px';
+  scrollToTopBtn.style.top = scrollPosition + 'px';
+});
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+  </script>
+  <script>
+window.addEventListener('load', function() {
+  if (window.location.hash === '#Features') {
+    const aboutSection = document.getElementById('Features');
+    if (aboutSection) {
+      const aboutSectionTop = aboutSection.offsetTop;
+      window.scrollTo({ top: aboutSectionTop, behavior: 'smooth' });
+    }
+  }
+});
+  </script>
+  <script>
+window.addEventListener('load', function() {
+  if (window.location.hash === '#Home') {
+    const aboutSection = document.getElementById('nav');
+    if (aboutSection) {
+      const aboutSectionTop = aboutSection.offsetTop;
+      window.scrollTo({ top: aboutSectionTop, behavior: 'smooth' });
+    }
+  }
+});
+  </script>
+   <script>
+window.addEventListener('load', function() {
+  if (window.location.hash === '#Status') {
+    const aboutSection = document.getElementById('Status');
+    if (aboutSection) {
+      const aboutSectionTop = aboutSection.offsetTop;
+      window.scrollTo({ top: aboutSectionTop, behavior: 'smooth' });
+    }
+  }
+});
+  </script>
+   <script>
+window.addEventListener('load', function() {
+  if (window.location.hash === '#Gallery') {
+    const aboutSection = document.getElementById('Gallery');
+    if (aboutSection) {
+      const aboutSectionTop = aboutSection.offsetTop;
+      window.scrollTo({ top: aboutSectionTop, behavior: 'smooth' });
+    }
+  }
+});
+  </script>
+</head>
+<body>
+<div id="initialPopup" class="overlay">
+  <div class="popup">
+    <button class="closeBtn" alt="X" onclick="hideInitialPopup()"></button>
+    <h2>Having trouble?</h2>
+    <div class="ph-installinstructions-body">
+      <p>Click the button below to download and install Minecraft.</p>
+      <button onclick="hideInitialPopup(); showStepsContainer();" class="btn btn-primary downloadButton">Download and Install</button>
+      <p style="font-size: 15px; margin: 0; margin-top: 10px !important; color: gray;">Still not working? Use Realm Code: rGGmyo9JYwY</p>
+    </div>
+  </div>
+</div>
+
+<div id="stepsContainer" class="overlay">
+  <div class="popup">
+    <button class="closeBtn" alt="X" onclick="hideStepsContainer()"></button>
+    <h2>How to download Minecraft?</h2>
+    <div class="ph-installinstructions-body">
+      <ul class="modal-col-4">
+        <li class="step1-of-4">
+          <h2>1</h2>
+          <p class="larger-font-size">Once <strong>Redirected</strong>, click on the button that appears in front of you. <p style="font-size: 15px; margin: 0; margin-top: 3px !important; color: gray;">If you're on PC press Save then double click the file.</p></p>
+        </li>
+        <li class="step2-of-4">
+          <h2>2</h2>
+          <p class="larger-font-size">Click <strong>Install</strong> when seen on your app store/installer to begin the installation process.</p>
+        </li>
+        <li class="step3-of-4">
+          <h2>3</h2>
+          <p class="larger-font-size">Click <strong>Open</strong> once you've successfully installed Minecraft.</p>
+        </li>
+        <li class="step4-of-4">
+          <h2>4</h2>
+          <p class="larger-font-size">After installation, click <strong>Join</strong> below to join the Realm!</p>
+          <div>
+            <a href="minecraft://acceptRealmInvite?inviteID=rGGmyo9JYwY" class="server-button">Join</a>
+          </div>
+        </li>
+      </ul>
+      <p style="font-size: 15px; margin: 0; margin-top: 5px !important; color: gray;">Didn't get redirected? <a href="https://www.minecraft.net/en-us/download" target="_blank" style="border-radius: none !important; background: none !important; color: gray; margin: 0 !important; padding: 0 !important;"><strong>Click Here</strong></a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showInitialPopup() {
+    document.getElementById('initialPopup').classList.add('visible');
+    positionPopup();
+    window.addEventListener('scroll', positionPopup);
+  }
+
+  function hideInitialPopup() {
+    document.getElementById('initialPopup').classList.remove('visible');
+    window.removeEventListener('scroll', positionPopup);
+  }
+
+  function showStepsContainer() {
+    document.getElementById('stepsContainer').classList.add('visible');
+    window.addEventListener('scroll', positionPopup);
+    alert('By pressing ok you will be automatically redirected to the Minecraft Download page. Return here and keep following the instructions.');
+    window.open('https://www.minecraft.net/en-us/download', '_blank');
+    positionPopup();
+  }
+
+  function hideStepsContainer() {
+    document.getElementById('stepsContainer').classList.remove('visible');
+    window.removeEventListener('scroll', positionPopup);
+  }
+
+  function positionPopup() {
+    var popup = document.querySelector('.overlay.visible');
+    var scrollY = window.scrollY || window.pageYOffset;
+    var windowHeight = window.innerHeight;
+    var popupHeight = popup.offsetHeight;
+    var desiredPosition = scrollY + windowHeight / 2 - popupHeight / 2 - 30;
+
+    popup.style.top = desiredPosition + 'px';
+  }
+
+  window.addEventListener('scroll', positionPopup);
+</script>
+    <div class="navbar" id="nav">
+    <img onclick="window.location.replace('/');" class="Logo" width="38px" src="radioactive-emoji.png" style="vertical-align: middle;" alt="☢️" />
+        <ul>
+            <li><a href="#Home">Home</a></li>
+            <li><a href="#About">About</a></li>
+            <li><a href="#Features">Features</a></li>
+            <li><a href="#Status">Status</a></li>
+            <li><a href="#Gallery">Gallery</a></li>
+            <li><a href="#Contact">Contact</a></li>
+        </ul>
+    </div>
+    <div class="hero">
+        <div class="container">
+            <h1 style="margin: 0;">Welcome to <img id="emoji" src="radioactive-emoji.png" style="width:48px; height: 48px; vertical-align: middle; margin-bottom: 10px;" width="48px" alt="☢️" />AtomicSMP<img id="emoji" width="48px" src="radioactive-emoji.png" style="vertical-align: middle; margin-bottom: 10px;" alt="☢️" />!</h1>
+            <p>A Minecraft survival multiplayer server for adventurers.</p>
+            <a href="minecraft://acceptRealmInvite?inviteID=rGGmyo9JYwY" onclick="showInitialPopup();" class="cta-button">Join Now</a>
+        </div>
+    </div>
+    <div class="section about-section">
+        <div class="container" id="About">
+            <h2>About AtomicSMP</h2><h4>Information about the Realm.</h4>
+            <p>AtomicSMP is a community-driven Minecraft survival multiplayer Realm. Explore vast landscapes, build epic structures, and embark on exciting adventures with friends. Join us and become part of our thriving Minecraft community.</p>
+        </div>
+    </div>
+    <div class="section features-section" id="Features">
+        <div class="container">
+            <h2>Realm Features</h2><h4>Plugins and Features used to improve the Experience.</h4>
+            <div class="features-grid">
+                <div class="feature">
+                    <div title="Survival" style="border-radius: 12px; background-image: url('img/Feature1.png'); size: cover; width: 100%; height: 100px; background-position: center center;"></div>
+                    <h3>Survival Gameplay</h3>
+                    <p>Experience the thrill of survival in a challenging Minecraft world.</p>
+                </div>
+                <div class="feature">
+                    <div title="Economy System" style="border-radius: 12px; background-image: url('img/Feature2.png'); size: cover; width: 100%; height: 100px; background-position: center center;"></div>
+                    <h3>Economy System</h3>
+                    <p>Engage in a dynamic player-driven economy with currency and trade.</p>
+                </div>
+                <div class="feature">
+                    <div title="Custom Plugins" style="border-radius: 12px; background-image: url('img/Feature3.png'); size: cover; width: 100%; height: 100px; background-position: left center;"></div>
+                    <h3>Custom Plugins</h3>
+                    <p>Enjoy unique gameplay enhancements and features with our custom plugins.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+      <div class="section features-section" id="Status">
+        <div class="container">
+            <h2>Realm Status</h2><h4>Current status of the Realm.</h4>
+        <div id="serverStatus">
+            <p style="color: red; font-weight: bold;">Unfortunetly Realms statuses are not retrieveable at the moment...</p>
+        </div>
+        </div>
+    </div>
+    <div class="section gallery-section" id="Gallery">
+        <div class="container">
+            <h2>Gallery</h2><h4>Screenshots taken inside the Realm.</h4>
+            <div class="gallery-grid">
+                <div class="SS1" style="border-radius: 12px; background-image: url('img/SS1.png'); size: cover; width: 47%; height: 300px; background-position: center center;"><p class="credit">MassaHex</p></div>
+                <div class="SS2" style="border-radius: 12px; background-image: url('img/SS2.png'); size: cover; width: 47%; height: 300px; background-position: center center;"><p class="credit">MassaHex</p></div>
+                <div class="SS3" style="border-radius: 12px; background-image: url('img/SS3.png'); size: cover; width: 47%; height: 300px; background-position: center center;"><p class="credit">xXLiitkingXx</p></div>
+                <div class="SS4" style="border-radius: 12px; background-image: url('img/SS4.png'); size: cover; width: 47%; height: 300px; background-position: center center;"><p class="credit">MapleChair69</p></div>
+            </div>
+        </div>
+    </div>
+    <div class="section contact-section" id="Contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>Have any questions or inquiries? Feel free to reach out to us on our discord.</p>
+            <a href="https://discord.gg/VbSGvUGzMg" class="ctad-button">Join Now</a>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <p>&copy; 2023 AtomicSMP. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
