@@ -164,80 +164,58 @@ if (tokenFromCookie) {
   updateProfileInfo();
 }
 
-// Add event listener for the DOMContentLoaded event
 document.addEventListener("DOMContentLoaded", function() {
-
-  // Check if the current page is /profile.html
   if (window.location.pathname === "/profile") {
-
-      // Get the token from the cookie
-  const token = getTokenFromCookie();
-
-    // Assuming you have the Xbox gamertag stored in a constant named xboxGamertag
-    const xboxGamertag = extractUsernameFromToken(token); // Assuming you have the token available from earlier extraction
-
-    // Assuming you have an HTML element with the class "gallery-grid" containing the screenshot divs
+    const token = getTokenFromCookie();
+    const xboxGamertag = extractUsernameFromToken(token);
     const galleryGrid = document.querySelector(".gallery-grid");
 
-fetch('/player_info.json')
-  .then(response => response.json())
-  .then(data => {
-    // Save the entire JSON data to the playerScreenshots constant
-    const playerScreenshots = data;
+    fetch('/player_info.json')
+      .then(response => response.json())
+      .then(data => {
+        const playerScreenshots = data;
 
-    // Your existing code to work with playerScreenshots
-    playerScreenshots.screenshots.forEach(screenshot => {
-      // Access screenshot.playerName and screenshot.imageUrl as needed
-      console.log(screenshot.playerName);
-      console.log(screenshot.imageUrl);
-    });
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    // Handle any errors that occurred during the fetch
-  });
+        // Check if the user is signed in
+        if (!xboxGamertag) {
+          const notSignedInMessage = document.createElement("p");
+          notSignedInMessage.textContent = "You are not signed in...";
+          notSignedInMessage.classList.add("not-signed-in");
 
-    // Check if the user is signed in
-    if (!xboxGamertag) {
-      // User is not signed in
-      const notSignedInMessage = document.createElement("p");
-      notSignedInMessage.textContent = "You are not signed in...";
-      notSignedInMessage.classList.add("not-signed-in");
+          galleryGrid.appendChild(notSignedInMessage);
+        } else {
+          const filteredScreenshots = playerScreenshots.screenshots.filter(
+            (screenshot) => screenshot.playerName === xboxGamertag
+          );
 
-      galleryGrid.appendChild(notSignedInMessage);
-    } else {
-      // Filter the player screenshots based on the Xbox gamertag
-      const filteredScreenshots = playerScreenshots.screenshots.filter(
-        (screenshot) => screenshot.playerName === xboxGamertag
-      );
+          galleryGrid.innerHTML = '';
 
-      // Clear the existing content of the gallery grid
-      galleryGrid.innerHTML = '';
+          if (filteredScreenshots.length === 0) {
+            const noScreenshotsMessage = document.createElement("p");
+            noScreenshotsMessage.textContent = "You don't have any screenshots...";
+            noScreenshotsMessage.classList.add("no-screenshots");
 
-      if (filteredScreenshots.length === 0) {
-        // No screenshots available
-        const noScreenshotsMessage = document.createElement("p");
-        noScreenshotsMessage.textContent = "You don't have any screenshots...";
-        noScreenshotsMessage.classList.add("no-screenshots");
+            galleryGrid.appendChild(noScreenshotsMessage);
+          } else {
+            filteredScreenshots.forEach((screenshot) => {
+              const screenshotDiv = document.createElement("div");
+              const screenshotName = screenshot.imageUrl.match(/\/([^/]+)\.png$/)[1];
+              screenshotDiv.setAttribute("class", screenshotName);
+              screenshotDiv.setAttribute("style", `border-radius: 12px; background-image: url('${screenshot.imageUrl}'); size: cover; width: 47%; height: 300px; background-position: center center;`);
 
-        galleryGrid.appendChild(noScreenshotsMessage);
-      } else {
-        // Loop through the filtered screenshots and update the corresponding divs
-        filteredScreenshots.forEach((screenshot) => {
-          const screenshotDiv = document.createElement("div");
-          const screenshotName = screenshot.imageUrl.match(/\/([^/]+)\.png$/)[1]; // Extract the screenshot name from the URL
-          screenshotDiv.setAttribute("class", screenshotName); // Use the screenshot name as the class attribute
-          screenshotDiv.setAttribute("style", `border-radius: 12px; background-image: url('${screenshot.imageUrl}'); size: cover; width: 47%; height: 300px; background-position: center center;`);
+              const creditParagraph = document.createElement("p");
+              creditParagraph.classList.add("credit");
+              creditParagraph.textContent = screenshot.playerName;
 
-          const creditParagraph = document.createElement("p");
-          creditParagraph.classList.add("credit");
-          creditParagraph.textContent = screenshot.playerName;
-
-          screenshotDiv.appendChild(creditParagraph);
-          galleryGrid.appendChild(screenshotDiv);
-        });
-      }
-    }
+              screenshotDiv.appendChild(creditParagraph);
+              galleryGrid.appendChild(screenshotDiv);
+            });
+          }
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // Handle any errors that occurred during the fetch
+      });
   }
 });
 
