@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function() {
 fetch('/player_info.json')
   .then(response => response.json())
   .then(data => {
-    // Access the JSON data
+    // Save the entire JSON data to the playerScreenshots constant
     const playerScreenshots = data;
 
     // Your existing code to work with playerScreenshots
