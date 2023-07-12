@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const gamertag = this.textContent;
 
       // Construct the URL with the gamertag parameter
-      const url = `https://example.com/user?name=${gamertag}`;
+      const url = `https://atomicsmp.pages.dev/user?name=${gamertag}`;
 
       // Open the URL in a new window or tab
       window.open(url, '_blank');
