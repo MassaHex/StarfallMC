@@ -55,7 +55,7 @@ function handleLogout() {
   document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
 
   // Redirect to the main page
-  window.location.href = 'https://atomicsmp.tres3mincraft.repl.co';
+  window.location.href = '/';
 }
 
 // Check if the token exists in the URL parameter
@@ -70,7 +70,7 @@ if (token) {
   window.history.replaceState({}, document.title, '/login.html');
 
   // Redirect to the main page
-  window.location.href = "https://atomicsmp.tres3mincraft.repl.co";
+  window.location.href = "/";
 } else {
   // Get the token from the cookie
   const tokenFromCookie = getTokenFromCookie();
