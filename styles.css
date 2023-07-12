@@ -6,7 +6,6 @@ body {
   margin: 0;
   padding: 0;
   background-image: url('img/Dirt.jpg');
-  backdrop-filter: brightness(90%);
   background-size: 60px;
 }
 
@@ -233,7 +232,7 @@ body {
   padding: 20px;
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
 }
 
 h1 {
@@ -469,6 +468,22 @@ ul {
   text-decoration: none !important;
   border-radius: 5px !important;
   transition: background-color 0.3s ease !important;
+}
+
+.ctag-button {
+  display: inline-block;
+  margin-left: 10px;
+  background: none;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+    padding: 10px 20px !important;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.ctag-button:hover {
+  background: #cccccc;
 }
 
 .cta-button:hover,
