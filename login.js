@@ -179,35 +179,23 @@ document.addEventListener("DOMContentLoaded", function() {
     // Assuming you have an HTML element with the class "gallery-grid" containing the screenshot divs
     const galleryGrid = document.querySelector(".gallery-grid");
 
-    // Assuming you have the JSON data containing the player screenshots stored in a constant named playerScreenshots
-    const playerScreenshots = {
-      "screenshots": [
-        {
-          "playerName": "MassaHex",
-          "imageUrl": "/img/SS1.png"
-        },
-        {
-          "playerName": "MassaHex",
-          "imageUrl": "/img/SS2.png"
-        },
-        {
-          "playerName": "MassaHex",
-          "imageUrl": "/img/SS5.png"
-        },
-        {
-          "playerName": "xXLiitkingXx",
-          "imageUrl": "/img/SS3.png"
-        },
-        {
-          "playerName": "MapleChair69",
-          "imageUrl": "/img/SS4.png"
-        },
-        {
-          "playerName": "PlayerKiller415",
-          "imageUrl": "/img/SS6.png"
-        }
-      ]
-    };
+fetch('/player_info.json')
+  .then(response => response.json())
+  .then(data => {
+    // Access the JSON data
+    const playerScreenshots = data;
+
+    // Your existing code to work with playerScreenshots
+    playerScreenshots.screenshots.forEach(screenshot => {
+      // Access screenshot.playerName and screenshot.imageUrl as needed
+      console.log(screenshot.playerName);
+      console.log(screenshot.imageUrl);
+    });
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    // Handle any errors that occurred during the fetch
+  });
 
     // Check if the user is signed in
     if (!xboxGamertag) {
