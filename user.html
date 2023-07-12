@@ -21,56 +21,39 @@ function positionLoadingIcon() {
     
   </script>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-  if (window.location.pathname === "/user.html") {
-    const galleryGrid = document.querySelector(".gallery-grid");
+document.addEventListener('DOMContentLoaded', function() {
+  // Get the necessary elements
+  var profilePicture = document.getElementById('search-main-profile-picture');
+  var profileUser = document.getElementById('search-main-profile-user');
+  var gamerscore = document.getElementById('searchgamerscore');
+  var gamesPlayed = document.getElementById('search-games-played');
 
-    // Get the gamertag from the URL query parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    const gamertag = urlParams.get("name");
+  // Get the gamertag from the current URL
+  var urlParams = new URLSearchParams(window.location.search);
+  var gamertag = urlParams.get('name');
 
-    fetch('/player_info.json')
-      .then(response => response.json())
-      .then(data => {
-        const playerScreenshots = data;
+  // Set the gamertag in the profile user element
+  profileUser.textContent = gamertag;
 
-        // Filter the player screenshots based on the gamertag
-        const filteredScreenshots = playerScreenshots.screenshots.filter(
-          (screenshot) => screenshot.playerName === gamertag
-        );
+  // Construct the URL to fetch user data
+  var apiUrl = 'https://gamertag-info-search.tres3mincraft.repl.co/?username=' + encodeURIComponent(gamertag);
 
-        if (filteredScreenshots.length === 0) {
-          const noScreenshotsMessage = document.createElement("p");
-          noScreenshotsMessage.textContent = "This user doesn't have any screenshots...";
-          noScreenshotsMessage.classList.add("no-screenshots");
-
-          galleryGrid.appendChild(noScreenshotsMessage);
-        } else {
-          filteredScreenshots.forEach((screenshot) => {
-            const screenshotDiv = document.createElement("div");
-            const screenshotName = screenshot.imageUrl.match(/\/([^/]+)\.png$/)[1];
-            screenshotDiv.setAttribute("class", screenshotName);
-            screenshotDiv.setAttribute("style", `border-radius: 12px; background-image: url('${screenshot.imageUrl}'); size: cover; width: 47%; height: 300px; background-position: center center;`);
-
-            const creditParagraph = document.createElement("p");
-            creditParagraph.classList.add("credit");
-            creditParagraph.textContent = screenshot.playerName;
-
-            screenshotDiv.appendChild(creditParagraph);
-            galleryGrid.appendChild(screenshotDiv);
-          });
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        // Handle any errors that occurred during the fetch
-      });
-  }
-});
-
+  // Fetch user data from the API
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      // Set the data in the respective elements
+      gamerscore.textContent = data.gamerscore;
+      gamesPlayed.textContent = data.gamesPlayed;
+      profilePicture.src = data.profilePictureUrl;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      // Handle any errors that occurred during the fetch
+    });
   </script>
   <script>
-document.addEventListener("DOMContentLoaded", function() {
+ddocument.addEventListener("DOMContentLoaded", function() {
   if (window.location.pathname === "/user.html") {
     const galleryGrid = document.querySelector(".gallery-grid");
 
