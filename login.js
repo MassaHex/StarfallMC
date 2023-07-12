@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function() {
           "imageUrl": "/img/SS4.png"
         },
         {
-          "playerName": "PlayerKiller#415",
+          "playerName": "PlayerKiller415",
           "imageUrl": "/img/SS6.png"
         }
       ]
