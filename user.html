@@ -21,9 +21,9 @@ function positionLoadingIcon() {
     
   </script>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
   // Check if the current page is user.html
-  if (window.location.pathname === "/user") {
+  if (window.location.pathname === "/user.html") {
     // Get the gamertag from the current URL
     const urlParams = new URLSearchParams(window.location.search);
     const gamertag = urlParams.get("name");
@@ -55,7 +55,8 @@ function positionLoadingIcon() {
           // Loop through the filtered screenshots and create the corresponding divs
           filteredScreenshots.forEach((screenshot) => {
             const screenshotDiv = document.createElement("div");
-            screenshotDiv.classList.add(screenshot.playerName);
+            const screenshotName = screenshot.imageUrl.match(/\/([^/]+)\.png$/)[1]; // Extract the screenshot name from the URL
+            screenshotDiv.classList.add(screenshotName);
             screenshotDiv.setAttribute("style", `border-radius: 12px; background-image: url('${screenshot.imageUrl}'); background-size: cover; width: 31%; height: 300px; background-position: center center;`);
 
             const creditParagraph = document.createElement("p");
