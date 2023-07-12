@@ -219,18 +219,22 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
-// Assuming you have an HTML element with the class "credit"
-const creditElement = document.querySelector('.credit');
+// Get all elements with the class "credit"
+const creditElements = document.querySelectorAll('.credit');
 
-creditElement.addEventListener('click', function() {
-  // Get the gamertag from the credit element's text content
-  const gamertag = this.textContent;
+// Iterate over each credit element
+creditElements.forEach(function(creditElement) {
+  // Add the click event listener to each element
+  creditElement.addEventListener('click', function() {
+    // Get the gamertag from the credit element's text content
+    const gamertag = this.textContent;
 
-  // Construct the URL with the gamertag parameter
-  const url = `/user?name=${gamertag}`;
+    // Construct the URL with the gamertag parameter
+    const url = `https://example.com/user?name=${gamertag}`;
 
-  // Open the URL in a new window or tab
-  window.open(url, '_blank');
+    // Open the URL in a new window or tab
+    window.open(url, '_blank');
+  });
 });
 
 // Function to position the loading icon in the center
