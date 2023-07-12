@@ -201,6 +201,10 @@ document.addEventListener("DOMContentLoaded", function() {
         {
           "playerName": "MapleChair69",
           "imageUrl": "/img/SS4.png"
+        },
+        {
+          "playerName": "PlayerKiller#415",
+          "imageUrl": "/img/SS6.png"
         }
       ]
     };
