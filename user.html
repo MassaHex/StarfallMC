@@ -21,6 +21,59 @@ function positionLoadingIcon() {
     
   </script>
   <script>
+    document.addEventListener("DOMContentLoaded", function() {
+  // Check if the current page is user.html
+  if (window.location.pathname === "/user.html") {
+    // Get the gamertag from the current URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const gamertag = urlParams.get("name");
+
+    // Assuming you have an HTML element with the class "gallery-grid" containing the screenshot divs
+    const galleryGrid = document.querySelector(".gallery-grid");
+
+    // Fetch the JSON data from the player_info.json file
+    fetch("/player_info.json")
+      .then(response => response.json())
+      .then(data => {
+        // Get the playerScreenshots from the fetched data
+        const playerScreenshots = data.screenshots;
+
+        // Filter the player screenshots based on the Xbox gamertag
+        const filteredScreenshots = playerScreenshots.filter(
+          (screenshot) => screenshot.playerName === gamertag
+        );
+
+        // Clear the existing content of the gallery grid
+        galleryGrid.innerHTML = '';
+
+        if (filteredScreenshots.length === 0) {
+          // No screenshots available for the gamertag
+          const noScreenshotsMessage = document.createElement("p");
+          noScreenshotsMessage.textContent = "No screenshots available for this gamertag.";
+          galleryGrid.appendChild(noScreenshotsMessage);
+        } else {
+          // Loop through the filtered screenshots and create the corresponding divs
+          filteredScreenshots.forEach((screenshot) => {
+            const screenshotDiv = document.createElement("div");
+            screenshotDiv.classList.add(screenshot.playerName);
+            screenshotDiv.setAttribute("style", `border-radius: 12px; background-image: url('${screenshot.imageUrl}'); background-size: cover; width: 31%; height: 300px; background-position: center center;`);
+
+            const creditParagraph = document.createElement("p");
+            creditParagraph.classList.add("credit");
+            creditParagraph.textContent = screenshot.playerName;
+
+            screenshotDiv.appendChild(creditParagraph);
+            galleryGrid.appendChild(screenshotDiv);
+          });
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+});
+  </script>
+  <script>
 document.addEventListener('DOMContentLoaded', function() {
   // Get the necessary elements
   var profilePicture = document.getElementById('search-main-profile-picture');
