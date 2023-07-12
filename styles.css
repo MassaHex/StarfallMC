@@ -408,6 +408,12 @@ ul {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.SS6:hover .credit {
+  opacity: 1;
+  margin-top: 270px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .credit {
   color: white;
   transition: all 0.3s ease;
