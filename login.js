@@ -191,6 +191,10 @@ document.addEventListener("DOMContentLoaded", function() {
           "imageUrl": "/img/SS2.png"
         },
         {
+          "playerName": "MassaHex",
+          "imageUrl": "/img/SS5.png"
+        },
+        {
           "playerName": "xXLiitkingXx",
           "imageUrl": "/img/SS3.png"
         },
