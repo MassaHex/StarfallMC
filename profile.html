@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html style="scroll-behavior: smooth;">
+<head>
+  <link rel="icon" type="image/png" href="favicon.png">
+    <title>AtomicSMP - My Profile</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&amp;family=Quicksand:wght@400;600;700&amp;family=Rubik:wght@300;400;600&amp;display=swap" rel="stylesheet">
+  <script>
+    // Function to position the loading icon in the center
+function positionLoadingIcon() {
+  var loadingElement = document.getElementById('Loading');
+  var windowHeight = window.innerHeight;
+  var loadingElementHeight = loadingElement.offsetHeight;
+  var desiredPosition = windowHeight / 2 - loadingElementHeight / 2;
+
+  loadingElement.style.top = desiredPosition + 'px';
+}
+
+    
+  </script>
+  <script>
+    // Function to handle the visibility of the logout button
+function handleLogoutButtonVisibility() {
+  const logoutButton = document.getElementById('logout-button');
+  const loginButton = document.getElementById('login-button');
+  const MyProfile = document.getElementById('MyProfile');
+  if (logoutButton) {
+    const token = getTokenFromCookie();
+    logoutButton.style.display = token ? 'block' : 'none';
+    loginButton.style.display = token ? 'none' : 'block';
+    MyProfile.style.display = token ? 'block' : 'none';
+  }
+}
+
+// Add event listener for DOMContentLoaded event
+document.addEventListener('DOMContentLoaded', handleLogoutButtonVisibility);
+  </script>
+  <script>
+window.addEventListener('load', function() {
+  if (window.location.hash === '#Home') {
+    const aboutSection = document.getElementById('nav');
+    if (aboutSection) {
+      const aboutSectionTop = aboutSection.offsetTop;
+      window.scrollTo({ top: aboutSectionTop, behavior: 'smooth' });
+    }
+  }
+});
+  </script>
+  <script src="login.js"></script>
+</head>
+<body style="height: 1050px;">
+<script>
+function rotateElement() {
+  var rotateElement = document.getElementById("profile-picture");
+  var popupanim = document.getElementById("popupContainer")
+  var currentTop = getComputedStyle(rotateElement).getPropertyValue("top");
+  
+  if (currentTop === "200px") {
+    rotateElement.style.top = "10px";
+    rotateElement.style.transform = "";
+    popupanim.style.top = "-200px";
+    popupanim.style.opacity = 0;
+  } else {
+    rotateElement.style.top = "200px";
+    popupanim.style.top = "62px";
+    popupanim.style.opacity = 1;
+    rotateElement.style.transform = "rotate(360deg)";
+  }
+}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Select the element you want to check for cursor clicks
+  const element = document.getElementById('popupContainer');
+  
+  // Add an event listener to the document to check for clicks
+  document.addEventListener('click', function(event) {
+    // Check if the click target is outside the element
+    if (!element.contains(event.target)) {
+      // Get the bounding rectangle of the element
+      const rect = element.getBoundingClientRect();
+      
+      // Check if the top level of the element is at 62px
+      if (rect.top === 62) {
+        // Call the rotateElement() function
+        rotateElement();
+      }
+    }
+  });
+});
+</script>
+  <div id="Loading" style="display: none; top: 0px;"><div id="loading-icon"></div></div>
+    <div class="navbar" id="nav">
+    <img onclick="window.location.replace('/');" class="Logo" width="38px" src="radioactive-emoji.png" style="vertical-align: middle;" alt="☢️" />
+        <ul>
+            <li><a href="./#Home">Home</a></li>
+            <li><a href="./#About">About</a></li>
+            <li><a href="./#Features">Features</a></li>
+            <li><a href="./#Status">Status</a></li>
+            <li><a href="./#Gallery">Gallery</a></li>
+            <li><a href="./#Contact">Contact</a></li>
+        </ul>
+      <img onclick="rotateElement()" id="profile-picture" class="profile" width="40px" src="defaultprof.png" style="vertical-align: middle; top: 10px; rotate: 0deg;" alt="👤" />
+    </div>
+  <div id="popupContainer" style="top: -200px; opacity: 0;">
+     <button onclick="window.location.replace('/profile.html')" id="MyProfile">My Profile</button>
+  <button onclick="window.location.replace('https://login-widget.xsolla.com/latest/?projectId=8acf4777-fcd8-493f-9c77-f7e6563a4685&locale=en_US')" id="login-button">Login</button>
+    <button onclick="handleLogout()" id="logout-button" style="display: none;">Logout</button>
+    <p class="Gamertag" id="popup-username">Not signed in</p>
+</div>
+    <div class="hero">
+        <div class="container">
+          <img id="main-profile-picture" width="48px" src="defaultprof.png" style="vertical-align: middle; border-radius: 24px; margin-top: 7px; margin-right: 12px; float: left;" alt="👤" />
+            <h1 style="margin: 0;" id="main-profile-user">Not signed In</h1>
+          <div style="flex: auto; display: inline-flex;">
+            <p><strong>Gamerscore:</strong></p><p style="margin-left: 5px;" id="gamerscore">Not Signed In</p>
+            <p style="margin-left: 12px;"><strong>|</strong></p>
+            <p style="margin-left: 12px;"><strong>Games Played:</strong></p><p style="margin-left: 5px;" id="games-played">Not Signed In</p>
+          </div>
+        </div>
+    </div>
+    <div class="section gallery-section">
+        <div class="container" id="About">
+            <h2>My Screenshots</h2><h4>Screenshots you sent in the Discord Server.</h4>
+          <div class="gallery-grid">
+            </div>
+        </div>
+    </div>
+      <div class="footer">
+        <div class="container">
+            <p>&copy; 2023 AtomicSMP. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
