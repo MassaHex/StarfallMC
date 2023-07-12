@@ -52,54 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
       // Handle any errors that occurred during the fetch
     });
   </script>
-  <script>
-document.addEventListener("DOMContentLoaded", function() {
-  if (window.location.pathname === "/user.html") {
-    const galleryGrid = document.querySelector(".gallery-grid");
-
-    // Get the gamertag from the URL query parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    const gamertag = urlParams.get("name");
-
-    fetch('/player_info.json')
-      .then(response => response.json())
-      .then(data => {
-        const playerScreenshots = data;
-
-        // Filter the player screenshots based on the gamertag
-        const filteredScreenshots = playerScreenshots.screenshots.filter(
-          (screenshot) => screenshot.playerName === gamertag
-        );
-
-        if (filteredScreenshots.length === 0) {
-          const noScreenshotsMessage = document.createElement("p");
-          noScreenshotsMessage.textContent = "This user doesn't have any screenshots...";
-          noScreenshotsMessage.classList.add("no-screenshots");
-
-          galleryGrid.appendChild(noScreenshotsMessage);
-        } else {
-          filteredScreenshots.forEach((screenshot) => {
-            const screenshotDiv = document.createElement("div");
-            const screenshotName = screenshot.imageUrl.match(/\/([^/]+)\.png$/)[1];
-            screenshotDiv.setAttribute("class", screenshotName);
-            screenshotDiv.setAttribute("style", `border-radius: 12px; background-image: url('${screenshot.imageUrl}'); size: cover; width: 47%; height: 300px; background-position: center center;`);
-
-            const creditParagraph = document.createElement("p");
-            creditParagraph.classList.add("credit");
-            creditParagraph.textContent = screenshot.playerName;
-
-            screenshotDiv.appendChild(creditParagraph);
-            galleryGrid.appendChild(screenshotDiv);
-          });
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        // Handle any errors that occurred during the fetch
-      });
-  }
-});
-  </script>
   <script src="login.js"></script>
 </head>
 <body style="height: 1050px;">
