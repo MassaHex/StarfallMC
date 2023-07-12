@@ -232,6 +232,9 @@ creditElements.forEach(function(creditElement) {
     // Construct the URL with the gamertag parameter
     const url = `https://example.com/user?name=${gamertag}`;
 
+    console.log('Clicked:', gamertag);
+    console.log('URL:', url);
+
     // Open the URL in a new window or tab
     window.open(url, '_blank');
   });
