@@ -255,17 +255,20 @@ function positionLoadingIcon() {
   var windowHeight = window.innerHeight;
   var loadingElementHeight = loadingElement.offsetHeight;
   var scrollY = window.scrollY || window.pageYOffset;
-  var desiredPosition = scrollY + windowHeight / 2 - loadingElementHeight / 2;
+  var visibleHeight = windowHeight - loadingElementHeight; // Subtract the loading element height from the window height
+  var desiredPosition = visibleHeight / 2 + scrollY;
+
+  // Check if the desired position exceeds the maximum or minimum position
+  var maxPosition = windowHeight - loadingElementHeight;
+  var minPosition = 0;
+  if (desiredPosition > maxPosition) {
+    desiredPosition = maxPosition;
+  } else if (desiredPosition < minPosition) {
+    desiredPosition = minPosition;
+  }
 
   loadingElement.style.top = desiredPosition + 'px';
 }
-
-// Rest of the code...
-
-// Update the position of the loading icon when scrolling
-window.addEventListener('scroll', function() {
-  positionLoadingIcon();
-});
 
 // Function to show the loading animation
 function showLoadingAnimation() {
@@ -337,10 +340,8 @@ window.addEventListener('load', function() {
   positionLoadingIcon();
 });
 
-// Update the position of the loading icon when scrolling
-window.addEventListener('scroll', function() {
-  positionLoadingIcon();
-});
+// Position the loading icon initially
+positionLoadingIcon();
 
 
 
