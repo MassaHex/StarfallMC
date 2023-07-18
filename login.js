@@ -344,8 +344,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Add the click event listener to each element
-    screenshotDiv.addEventListener('click', function() {
-      if (!overlay) {
+    screenshotDiv.addEventListener('click', function(event) {
+      if (event.target === this && !overlay) {
         // Get the URL of the background image
         const imageUrl = getBackgroundImageUrl(this);
 
