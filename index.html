@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 20;
     opacity: 0.5;
     background-color: #000;
+    color: #fff;
     }
   `;
 
@@ -71,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Create the mini website
   var miniWebsite = document.createElement('div');
   miniWebsite.id = 'mini-website';
-  miniWebsite.innerHTML = '<div id="IframeCover"><p style="text-align: center;">This game must be played in a out of an iframe. Click Me.</p></div><iframe id="mini-website-iframe" src="/Eaglercraft" style="width: 100%; height: 100%; border: none;"></iframe>';
+  miniWebsite.innerHTML = '<div id="IframeCover"><p style="text-align: center;">This game must be played in a out of an iframe. <p style="color: blue; cursor: pointer;" onclick="window.location.href = '/Eaglercraft'">Click Me.</p></p></div><iframe id="mini-website-iframe" src="/Eaglercraft" style="width: 100%; height: 100%; border: none;"></iframe>';
   document.body.appendChild(miniWebsite);
 
   // Get the button, mini website, and iframe elements
