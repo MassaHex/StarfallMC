@@ -49,9 +49,14 @@ document.addEventListener('DOMContentLoaded', function() {
       left: 10px;
       width: 20px;
       height: 20px;
-      background-color: #29bf12;
-      transform: rotate(45deg);
       cursor: pointer;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transform: rotate(45deg);
+      transition: stroke 0.3s;
     }
 
     /* Styling for the X button */
@@ -78,14 +83,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // Create the circular button
   var button = document.createElement('div');
   button.id = 'minecraft-button';
-  button.innerHTML = '<img src="minecraft_logo.png" alt="Minecraft Logo" width="30" height="30">';
+  button.innerHTML = '<svg id="enlarge-arrow" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"></path></svg>';
   document.body.appendChild(button);
 
   // Create the mini website
   var miniWebsite = document.createElement('div');
   miniWebsite.id = 'mini-website';
   miniWebsite.innerHTML = `
-    <div id="enlarge-arrow"></div>
     <div id="close-button">×</div>
     <iframe id="mini-website-iframe" src="https://example.com" style="width: 100%; height: 100%; border: none;"></iframe>
   `;
@@ -108,11 +112,13 @@ document.addEventListener('DOMContentLoaded', function() {
       miniWebsiteElement.style.height = '300px';
       miniWebsiteElement.style.left = '-300px';
       buttonElement.style.transform = 'rotate(0deg)';
+      arrowElement.style.stroke = '#fff';
     } else {
       miniWebsiteElement.style.width = '100%';
       miniWebsiteElement.style.height = '100%';
       miniWebsiteElement.style.left = '0';
       buttonElement.style.transform = 'rotate(45deg)';
+      arrowElement.style.stroke = '#000';
     }
     isEnlarged = !isEnlarged;
   }
@@ -123,6 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
     miniWebsiteElement.style.height = '300px';
     miniWebsiteElement.style.left = '-300px';
     buttonElement.style.transform = 'rotate(0deg)';
+    arrowElement.style.stroke = '#fff';
     isEnlarged = false;
   }
 
@@ -137,17 +144,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Add keydown event listener to the window and forward key events to the iframe
   window.addEventListener('keydown', forwardKeyEvent);
-});
-  </script>
-  <script>
-window.addEventListener('load', function() {
-  if (window.location.hash === '#Features') {
-    const aboutSection = document.getElementById('Features');
-    if (aboutSection) {
-      const aboutSectionTop = aboutSection.offsetTop;
-      window.scrollTo({ top: aboutSectionTop, behavior: 'smooth' });
-    }
-  }
 });
   </script>
   <script>
