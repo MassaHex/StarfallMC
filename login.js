@@ -351,7 +351,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Create a full view overlay element
         overlay = document.createElement('div');
-        overlay.classList.add('overlay');
+        overlay.classList.add('imageoverlay');
 
         // Create an image element for full view
         const fullImageView = document.createElement('img');
