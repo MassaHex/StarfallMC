@@ -378,6 +378,12 @@ ul {
   transition: background-color 0.3s ease;
 }
 
+.SS:hover .credit {
+  opacity: 0.9;
+  margin-top: 270px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .SS1:hover .credit {
   opacity: 0.9;
   margin-top: 270px;
