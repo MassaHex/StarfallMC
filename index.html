@@ -90,9 +90,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (isEnlarged) {
       buttonElement.style.transform = 'rotate(0deg)';
       var playButtonElement = document.getElementById('play-button');
+      playButtonElement.onclick = openEagler;
       playButtonElement.style.transform = 'translateX(-100%)';
       playButtonElement.style.opacity = 0;
-      playButtonElement.onclick = openEagler;
       setTimeout(function() {
         playButtonElement.remove();
       }, 300);
