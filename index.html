@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Function to forward key events to the iframe
   function forwardKeyEvent(event) {
     if (isEnlarged) {
-      iframeElement.contentWindow.postMessage({ type: 'keypress', event: event }, '*');
+      iframeElement.contentWindow.postMessage({ type: 'keydown', event: event }, '*');
     }
   }
 
