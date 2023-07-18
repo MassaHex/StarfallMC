@@ -22,6 +22,115 @@
     <link rel="shortcut icon" href="favicon.ico" />
     <script type="text/javascript" src="classes.js"></script>
     <script type="text/javascript" src="eagswebrtc.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+  // CSS styles for the circular button and sliding button
+  var styles = `
+    /* Styling for the circular button */
+    #minecraft-button {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 9999;
+      background-size: 40px;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: transform 0.3s;
+    }
+
+    /* Styling for the sliding button */
+    #play-button {
+      position: fixed;
+      top: calc(50% + 370px);
+      left: calc(20px + 50px + 20px);
+      width: 295px;
+      height: 45px;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 9998;
+      transform: translateX(-100%);
+      transition: transform 0.3s, opacity 0.3s;
+      opacity: 0;
+    }
+
+    /* Styling for the sliding button image */
+    #play-button img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  `;
+
+  var defaultImage = '/img/MCExit.png';
+  var hoverImage = '/img/MCExitHover.png';
+
+  // Create the <style> tag and append it to the <head> element
+  var styleElement = document.createElement('style');
+  styleElement.innerHTML = styles;
+  document.head.appendChild(styleElement);
+
+  // Create the circular button
+  var button = document.createElement('div');
+  button.id = 'minecraft-button';
+  button.title = 'Minicraft';
+  document.body.appendChild(button);
+
+  // Get the button element
+  var buttonElement = document.getElementById('minecraft-button');
+
+  // Flag to track the state of the mini website (enlarged or not)
+  var isEnlarged = false;
+
+  // Function to handle button click event
+  function handleButtonClick() {
+    if (isEnlarged) {
+      buttonElement.style.transform = 'rotate(0deg)';
+      var playButtonElement = document.getElementById('play-button');
+      playButtonElement.style.transform = 'translateX(-100%)';
+      playButtonElement.style.opacity = 0;
+      setTimeout(function() {
+        playButtonElement.remove();
+      }, 300);
+    } else {
+      buttonElement.style.transform = 'rotate(360deg)';
+      var playButton = document.createElement('div');
+      playButton.id = 'play-button';
+      playButton.onmouseover = handleButtonHover;
+      playButton.onmouseout = function() {
+        var playButtonImageElement = document.getElementById('play-button-image');
+        playButtonImageElement.src = defaultImage;
+      };
+      playButton.innerHTML = '<img id="play-button-image" onclick="window.location.href = \'/\';" src="/img/play-button-default.png" alt="Play">';
+      document.body.appendChild(playButton);
+      setTimeout(function() {
+        playButton.style.transform = 'translateX(0)';
+        playButton.style.opacity = 1;
+      }, 0);
+    }
+    isEnlarged = !isEnlarged;
+  }
+
+  // Function to handle the play button hover event
+  function handleButtonHover(event) {
+    var playButtonImageElement = document.getElementById('play-button-image');
+    playButtonImageElement.src = event.type === 'mouseover' ? hoverImage : defaultImage;
+  }
+
+  // Add click event listener to the button
+  buttonElement.addEventListener('click', handleButtonClick);
+});
+  </script>
     <script type="text/javascript">
       if (document.location.href.startsWith("file:")) {
         alert(
