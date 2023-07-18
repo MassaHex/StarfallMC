@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
       justify-content: center;
       cursor: pointer;
       z-index: 9999;
+      transition: transform 0.3s;
     }
 
     /* Styling for the mini website */
@@ -97,27 +98,32 @@ document.addEventListener('DOMContentLoaded', function() {
   var closeButtonElement = document.getElementById('close-button');
   var iframeElement = document.getElementById('mini-website-iframe');
 
+  // Flag to track the state of the mini website (enlarged or not)
+  var isEnlarged = false;
+
   // Function to handle button click event
   function handleButtonClick() {
-    if (miniWebsiteElement.classList.contains('enlarged')) {
-      miniWebsiteElement.classList.remove('enlarged');
+    if (isEnlarged) {
       miniWebsiteElement.style.width = '300px';
       miniWebsiteElement.style.height = '300px';
       miniWebsiteElement.style.left = '-300px';
+      buttonElement.style.transform = 'rotate(0deg)';
     } else {
-      miniWebsiteElement.classList.add('enlarged');
       miniWebsiteElement.style.width = '100%';
       miniWebsiteElement.style.height = '100%';
       miniWebsiteElement.style.left = '0';
+      buttonElement.style.transform = 'rotate(45deg)';
     }
+    isEnlarged = !isEnlarged;
   }
 
   // Function to handle close button click event
   function handleCloseButtonClick() {
-    miniWebsiteElement.classList.remove('enlarged');
     miniWebsiteElement.style.width = '300px';
     miniWebsiteElement.style.height = '300px';
     miniWebsiteElement.style.left = '-300px';
+    buttonElement.style.transform = 'rotate(0deg)';
+    isEnlarged = false;
   }
 
   // Function to forward key events to the iframe
@@ -131,11 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Add keydown event listener to the window and forward key events to the iframe
   window.addEventListener('keydown', forwardKeyEvent);
-
-  // Add transitionend event listener to the mini website to remove the spin animation
-  miniWebsiteElement.addEventListener('transitionend', function() {
-    miniWebsiteElement.style.transform = 'none';
-  });
 });
   </script>
   <script>
