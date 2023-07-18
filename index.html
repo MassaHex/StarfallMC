@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&amp;family=Quicksand:wght@400;600;700&amp;family=Rubik:wght@300;400;600&amp;display=swap" rel="stylesheet">
  <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // CSS styles for the circular button, mini website, and arrow
+  // CSS styles for the circular button and mini website
   var styles = `
     /* Styling for the circular button */
     #minecraft-button {
@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
       justify-content: center;
       cursor: pointer;
       z-index: 9999;
-      background-size: 40px; 
-      background-position: center; 
+      background-size: 40px;
+      background-position: center;
       background-repeat: no-repeat;
       transition: transform 0.3s;
     }
@@ -44,24 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
       transition: left 0.3s;
       z-index: 9998;
     }
-
-    /* Styling for the arrow */
-    #enlarge-arrow {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      width: 20px;
-      height: 20px;
-      cursor: pointer;
-      opacity: 0;
-      fill: none;
-      stroke: #000;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      transform: rotate(45deg);
-      transition: opacity 0.3s;
-    }
   `;
 
   // Create the <style> tag and append it to the <head> element
@@ -72,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Create the circular button
   var button = document.createElement('div');
   button.id = 'minecraft-button';
-  button.innerHTML = '<svg id="enlarge-arrow" viewBox="0 0 24 24" title="Minicraft"><path d="M7 10l5 5 5-5"></path></svg>';
+  button.title = 'Minicraft';
   document.body.appendChild(button);
 
   // Create the mini website
@@ -84,7 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Get the button, mini website, and iframe elements
   var buttonElement = document.getElementById('minecraft-button');
   var miniWebsiteElement = document.getElementById('mini-website');
-  var arrowElement = document.getElementById('enlarge-arrow');
   var iframeElement = document.getElementById('mini-website-iframe');
 
   // Flag to track the state of the mini website (enlarged or not)
@@ -95,11 +76,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (isEnlarged) {
       miniWebsiteElement.style.left = '-100%';
       buttonElement.style.transform = 'rotate(0deg)';
-      arrowElement.style.opacity = '0';
     } else {
       miniWebsiteElement.style.left = '0';
-      buttonElement.style.transform = 'rotate(45deg)';
-      arrowElement.style.opacity = '1';
+      buttonElement.style.transform = 'rotate(360deg)';
     }
     isEnlarged = !isEnlarged;
   }
