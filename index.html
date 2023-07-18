@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&amp;family=Quicksand:wght@400;600;700&amp;family=Rubik:wght@300;400;600&amp;display=swap" rel="stylesheet">
  <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // CSS styles for the circular button and mini website
+  // CSS styles for the circular button and overlay
   var styles = `
     /* Styling for the circular button */
     #minecraft-button {
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /* Styling for the overlay */
-    #overlay {
+    #iframe-overlay {
       position: fixed;
       top: 0;
       left: 0;
@@ -41,7 +41,18 @@ document.addEventListener('DOMContentLoaded', function() {
       height: 100%;
       background-color: rgba(0, 0, 0, 0.5);
       z-index: 9998;
-      pointer-events: none;
+      display: none;
+    }
+
+    /* Styling for the iframe */
+    #iframe-overlay iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      height: 80%;
+      border: none;
     }
   `;
 
@@ -58,26 +69,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Create the overlay
   var overlay = document.createElement('div');
-  overlay.id = 'overlay';
+  overlay.id = 'iframe-overlay';
   document.body.appendChild(overlay);
 
-  // Get the button, overlay, and iframe elements
-  var buttonElement = document.getElementById('minecraft-button');
-  var overlayElement = document.getElementById('overlay');
-  var iframeElement = document.createElement('iframe');
-  iframeElement.src = 'https://example.com'; // Replace with the URL of your game
+  // Create the iframe
+  var iframe = document.createElement('iframe');
+  iframe.src = 'https://example.com'; // Replace with the URL of your game
 
   // Function to handle button click event
   function handleButtonClick() {
-    if (iframeElement.parentNode === null) {
-      overlayElement.appendChild(iframeElement);
+    if (!overlay.style.display || overlay.style.display === 'none') {
+      overlay.appendChild(iframe);
+      overlay.style.display = 'block';
     } else {
-      overlayElement.removeChild(iframeElement);
+      overlay.removeChild(iframe);
+      overlay.style.display = 'none';
     }
   }
 
   // Add click event listener to the button
-  buttonElement.addEventListener('click', handleButtonClick);
+  button.addEventListener('click', handleButtonClick);
 });
   </script>
   <script>
