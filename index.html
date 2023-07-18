@@ -41,10 +41,11 @@ document.addEventListener('DOMContentLoaded', function() {
     /* Styling for the sliding button */
     #play-button {
       position: fixed;
-      top: calc(87.5% - 25px);
+      top: calc(50% - 25px);
       left: calc(20px + 50px + 20px);
       width: 50px;
       height: 50px;
+      background-color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -57,10 +58,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /* Styling for the sliding button image */
-    #play-button img {
+    #play-button::before {
+      content: '';
+      display: block;
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      background-image: url('/img/play-button-default.png');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
     }
   `;
 
@@ -75,10 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
   button.title = 'Minicraft';
   document.body.appendChild(button);
 
-  var defaultImage = '/img/play-button-default.png';
-  var hoverImage = '/img/play-button-hover.png';
-
-  
   // Get the button element
   var buttonElement = document.getElementById('minecraft-button');
 
@@ -94,14 +96,13 @@ document.addEventListener('DOMContentLoaded', function() {
       playButtonElement.remove();
     } else {
       buttonElement.style.transform = 'rotate(360deg)';
-      var playButton = document.createElement('button');
+      var playButton = document.createElement('div');
       playButton.id = 'play-button';
       playButton.onmouseover = handleButtonHover;
       playButton.onmouseout = function() {
-        var playButtonImageElement = document.getElementById('play-button-image');
-        playButtonImageElement.src = defaultImage;
+        var playButtonElement = document.getElementById('play-button');
+        playButtonElement.style.backgroundImage = `url(${defaultImage})`;
       };
-      playButton.innerHTML = '<img id="play-button-image" src="/img/play-button-default.png" alt="Play">';
       document.body.appendChild(playButton);
       setTimeout(function() {
         playButton.style.transform = 'translateX(0)';
@@ -112,8 +113,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Function to handle the play button hover event
   function handleButtonHover(event) {
-    var playButtonImageElement = document.getElementById('play-button-image');
-    playButtonImageElement.src = event.type === 'mouseover' ? hoverImage : defaultImage;
+    var playButtonElement = document.getElementById('play-button');
+    playButtonElement.style.backgroundImage = event.type === 'mouseover' ? `url(${hoverImage})` : `url(${defaultImage})`;
   }
 
   // Add click event listener to the button
