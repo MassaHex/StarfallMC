@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
     #play-button {
       position: fixed;
       top: calc(50% - 25px);
-      left: -100px;
+      left: calc(20px + 50px + 20px);
       width: 100px;
       height: 50px;
       background-color: #fff;
@@ -51,12 +51,10 @@ document.addEventListener('DOMContentLoaded', function() {
       justify-content: center;
       cursor: pointer;
       z-index: 9999;
-      transition: left 0.3s;
+      transform: translateX(-100%);
+      transition: transform 0.3s;
     }
   `;
-
-  var defaultImage = '/img/play-button-default.png';
-  var hoverImage = '/img/play-button-hover.png';
 
   // Create the <style> tag and append it to the <head> element
   var styleElement = document.createElement('style');
@@ -80,14 +78,22 @@ document.addEventListener('DOMContentLoaded', function() {
     if (isEnlarged) {
       buttonElement.style.transform = 'rotate(0deg)';
       var playButtonElement = document.getElementById('play-button');
+      playButtonElement.style.transform = 'translateX(-100%)';
       playButtonElement.remove();
     } else {
       buttonElement.style.transform = 'rotate(360deg)';
       var playButton = document.createElement('button');
       playButton.id = 'play-button';
       playButton.onmouseover = handleButtonHover;
+      playButton.onmouseout = function() {
+        var playButtonImageElement = document.getElementById('play-button-image');
+        playButtonImageElement.src = defaultImage;
+      };
       playButton.innerHTML = '<img id="play-button-image" src="/img/play-button-default.png" alt="Play">';
       document.body.appendChild(playButton);
+      setTimeout(function() {
+        playButton.style.transform = 'translateX(0)';
+      }, 0);
     }
     isEnlarged = !isEnlarged;
   }
