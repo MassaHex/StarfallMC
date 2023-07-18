@@ -8,12 +8,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&amp;family=Quicksand:wght@400;600;700&amp;family=Rubik:wght@300;400;600&amp;display=swap" rel="stylesheet">
-  <script>
-function openEagler() {
-  // Replace 'https://example.com' with the desired URL
-  window.location.href = '/Eaglercraft';
-}
-</script>
  <script>
 document.addEventListener('DOMContentLoaded', function() {
   // CSS styles for the circular button and sliding button
@@ -89,7 +83,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (isEnlarged) {
       buttonElement.style.transform = 'rotate(0deg)';
       var playButtonElement = document.getElementById('play-button');
-      playButtonElement.addEventListener('click', openEagler);
       playButtonElement.style.transform = 'translateX(-100%)';
       playButtonElement.style.opacity = 0;
       setTimeout(function() {
@@ -113,6 +106,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     isEnlarged = !isEnlarged;
   }
+
+  playButtonElement.addEventListener('click', function() {
+  window.location.href = '/Eaglercraft';
+});
 
   // Function to handle the play button hover event
   function handleButtonHover(event) {
