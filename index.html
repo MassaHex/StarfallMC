@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
       transform: translateX(-100%);
       transition: transform 0.3s, opacity 0.3s;
       opacity: 0;
-      cursor: default;
     }
 
     /* Styling for the sliding button image */
@@ -90,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (isEnlarged) {
       buttonElement.style.transform = 'rotate(0deg)';
       var playButtonElement = document.getElementById('play-button');
-      playButtonElement.onclick = openEagler;
+      playButtonElement.addEventListener('click', openEagler);
       playButtonElement.style.transform = 'translateX(-100%)';
       playButtonElement.style.opacity = 0;
       setTimeout(function() {
