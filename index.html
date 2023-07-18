@@ -51,16 +51,31 @@ document.addEventListener('DOMContentLoaded', function() {
       z-index: 9998;
     }
 
-    #IframeCover {
-          display: flex;
+    /* Styling for the animated button */
+    #play-button {
+      position: fixed;
+      top: calc(50% - 25px);
+      left: -100px;
+      width: 100px;
+      height: 50px;
+      background-color: #fff;
+      display: flex;
       align-items: center;
       justify-content: center;
-    width: 100%;
-    height: 100%;
-    z-index: 20;
-    color: #fff;
-    background-image: url('/Eagmenu.png');
-    background-size: cover;
+      cursor: pointer;
+      z-index: 9999;
+      animation-name: flyIn;
+      animation-duration: 0.5s;
+      animation-timing-function: ease-out;
+    }
+
+    @keyframes flyIn {
+      0% {
+        left: -100px;
+      }
+      100% {
+        left: calc(20px + 50px + 20px);
+      }
     }
   `;
 
@@ -78,13 +93,12 @@ document.addEventListener('DOMContentLoaded', function() {
   // Create the mini website
   var miniWebsite = document.createElement('div');
   miniWebsite.id = 'mini-website';
-  miniWebsite.innerHTML = '<div id="IframeCover"><p style="text-align: center;">Eaglercraft/Minicraft must be played out of an iframe. <p style="color: blue; cursor: pointer; margin-left: 5px;" onclick="openEagler()">Click Me.</p></p></div><iframe id="mini-website-iframe" src="/Eaglercraft" style="width: 100%; height: 100%; border: none;"></iframe>';
+  miniWebsite.innerHTML = '<button id="play-button" onmouseover="handleButtonHover(true)" onmouseout="handleButtonHover(false)"><img id="play-button-image" src="play-button-default.png" alt="Play"></button>';
   document.body.appendChild(miniWebsite);
 
-  // Get the button, mini website, and iframe elements
+  // Get the button and mini website elements
   var buttonElement = document.getElementById('minecraft-button');
   var miniWebsiteElement = document.getElementById('mini-website');
-  var iframeElement = document.getElementById('mini-website-iframe');
 
   // Flag to track the state of the mini website (enlarged or not)
   var isEnlarged = false;
@@ -101,18 +115,14 @@ document.addEventListener('DOMContentLoaded', function() {
     isEnlarged = !isEnlarged;
   }
 
-  // Function to forward key events to the iframe
-  function forwardKeyEvent(event) {
-    if (isEnlarged) {
-      iframeElement.contentWindow.postMessage({ type: 'keydown', event: event }, '*');
-    }
+  // Function to handle the play button hover event
+  function handleButtonHover(isHovering) {
+    var playButtonImageElement = document.getElementById('play-button-image');
+    playButtonImageElement.src = isHovering ? hoverImage : defaultImage;
   }
 
   // Add click event listener to the button
   buttonElement.addEventListener('click', handleButtonClick);
-
-  // Add keydown event listener to the window and forward key events to the iframe
-  window.addEventListener('keydown', forwardKeyEvent);
 });
   </script>
   <script>
