@@ -196,19 +196,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
             galleryGrid.appendChild(noScreenshotsMessage);
           } else {
-            filteredScreenshots.forEach((screenshot) => {
-              const screenshotDiv = document.createElement("div");
-              const screenshotName = screenshot.imageUrl.match(/\/([^/]+)\.png$/)[1];
-              screenshotDiv.setAttribute("class", screenshotName);
-              screenshotDiv.setAttribute("style", `border-radius: 12px; background-image: url('${screenshot.imageUrl}'); size: cover; width: 47%; height: 300px; background-position: center center;`);
+filteredScreenshots.forEach((screenshot) => {
+  const screenshotDiv = document.createElement("div");
+  const screenshotName = screenshot.imageUrl.match(/\/([^/]+)\.png$/)[1];
+  screenshotDiv.setAttribute("class", "SS");
+  screenshotDiv.setAttribute("style", `border-radius: 12px; background-image: url('${screenshot.imageUrl}'); size: cover; width: 47%; height: 300px; background-position: center center;`);
 
-              const creditParagraph = document.createElement("p");
-              creditParagraph.classList.add("credit");
-              creditParagraph.textContent = screenshot.playerName;
+  const creditParagraph = document.createElement("p");
+  creditParagraph.classList.add("credit");
+  creditParagraph.textContent = screenshot.playerName;
 
-              screenshotDiv.appendChild(creditParagraph);
-              galleryGrid.appendChild(screenshotDiv);
-            });
+  screenshotDiv.appendChild(creditParagraph);
+  galleryGrid.appendChild(screenshotDiv);
+});
           }
         }
       })
