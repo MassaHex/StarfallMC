@@ -402,6 +402,12 @@ ul {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.SSE:hover .credit {
+  opacity: 0.9;
+  margin-top: 270px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .credit {
   color: white;
   transition: all 0.3s ease;
