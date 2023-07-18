@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      background-color: #29bf12;
+      background-color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -31,13 +31,13 @@ document.addEventListener('DOMContentLoaded', function() {
     /* Styling for the mini website */
     #mini-website {
       position: fixed;
-      top: 60px;
-      right: 20px;
+      top: 20px;
+      left: -300px;
       width: 300px;
       height: 300px;
       background-color: #fff;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      transition: right 0.3s;
+      transition: left 0.3s;
       z-index: 9998;
     }
 
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
   miniWebsite.innerHTML = `
     <div id="enlarge-arrow"></div>
     <div id="close-button">×</div>
-    <iframe src="https://example.com" style="width: 100%; height: 100%; border: none;"></iframe>
+    <iframe src="/Eaglercraft" style="width: 100%; height: 100%; border: none;"></iframe>
   `;
   document.body.appendChild(miniWebsite);
 
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Function to handle button click event
   function handleButtonClick() {
-    miniWebsiteElement.style.right = '20px';
+    miniWebsiteElement.style.left = '0';
   }
 
   // Function to handle arrow click event
@@ -109,24 +109,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Function to handle close button click event
   function handleCloseButtonClick() {
-    miniWebsiteElement.style.right = '-300px';
+    miniWebsiteElement.style.left = '-300px';
   }
 
   // Add click event listeners to the button, arrow, and close button
   buttonElement.addEventListener('click', handleButtonClick);
   arrowElement.addEventListener('click', handleArrowClick);
   closeButtonElement.addEventListener('click', handleCloseButtonClick);
-});
-  </script>
-    <script>
-window.addEventListener('load', function() {
-  if (window.location.hash === '#About') {
-    const aboutSection = document.getElementById('About');
-    if (aboutSection) {
-      const aboutSectionTop = aboutSection.offsetTop;
-      window.scrollTo({ top: aboutSectionTop, behavior: 'smooth' });
-    }
-  }
 });
   </script>
   <script>window.addEventListener('scroll', function() {
