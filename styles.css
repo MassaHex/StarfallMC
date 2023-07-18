@@ -9,6 +9,10 @@ body {
   background-size: 60px;
 }
 
+#minecraft-button {
+  background-image: url('/minecraft-icon.png');
+}
+
 #Loading {
   position: fixed;
   width: 100%;
