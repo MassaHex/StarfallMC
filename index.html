@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&amp;family=Quicksand:wght@400;600;700&amp;family=Rubik:wght@300;400;600&amp;display=swap" rel="stylesheet">
  <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // CSS styles for the circular button and overlay
+  // CSS styles for the circular button and mini website
   var styles = `
     /* Styling for the circular button */
     #minecraft-button {
@@ -32,27 +32,25 @@ document.addEventListener('DOMContentLoaded', function() {
       transition: transform 0.3s;
     }
 
-    /* Styling for the overlay */
-    #iframe-overlay {
+    /* Styling for the mini website */
+    #mini-website {
       position: fixed;
       top: 0;
-      left: 0;
+      left: -100%;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      transition: left 0.3s;
       z-index: 9998;
-      display: none;
     }
 
-    /* Styling for the iframe */
-    #iframe-overlay iframe {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80%;
-      height: 80%;
-      border: none;
+    #IframeCover {
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    opacity: 0.5;
+    background-color: #000;
     }
   `;
 
@@ -67,28 +65,44 @@ document.addEventListener('DOMContentLoaded', function() {
   button.title = 'Minicraft';
   document.body.appendChild(button);
 
-  // Create the overlay
-  var overlay = document.createElement('div');
-  overlay.id = 'iframe-overlay';
-  document.body.appendChild(overlay);
+  // Create the mini website
+  var miniWebsite = document.createElement('div');
+  miniWebsite.id = 'mini-website';
+  miniWebsite.innerHTML = '<div id="IframeCover"><p style="text-align: center;">This game must be played in a out of an iframe. Click Me.</p></div><iframe id="mini-website-iframe" src="/Eaglercraft" style="width: 100%; height: 100%; border: none;"></iframe>';
+  document.body.appendChild(miniWebsite);
 
-  // Create the iframe
-  var iframe = document.createElement('iframe');
-  iframe.src = 'https://example.com'; // Replace with the URL of your game
+  // Get the button, mini website, and iframe elements
+  var buttonElement = document.getElementById('minecraft-button');
+  var miniWebsiteElement = document.getElementById('mini-website');
+  var iframeElement = document.getElementById('mini-website-iframe');
+
+  // Flag to track the state of the mini website (enlarged or not)
+  var isEnlarged = false;
 
   // Function to handle button click event
   function handleButtonClick() {
-    if (!overlay.style.display || overlay.style.display === 'none') {
-      overlay.appendChild(iframe);
-      overlay.style.display = 'block';
+    if (isEnlarged) {
+      miniWebsiteElement.style.left = '-100%';
+      buttonElement.style.transform = 'rotate(0deg)';
     } else {
-      overlay.removeChild(iframe);
-      overlay.style.display = 'none';
+      miniWebsiteElement.style.left = '0';
+      buttonElement.style.transform = 'rotate(360deg)';
+    }
+    isEnlarged = !isEnlarged;
+  }
+
+  // Function to forward key events to the iframe
+  function forwardKeyEvent(event) {
+    if (isEnlarged) {
+      iframeElement.contentWindow.postMessage({ type: 'keydown', event: event }, '*');
     }
   }
 
   // Add click event listener to the button
-  button.addEventListener('click', handleButtonClick);
+  buttonElement.addEventListener('click', handleButtonClick);
+
+  // Add keydown event listener to the window and forward key events to the iframe
+  window.addEventListener('keydown', forwardKeyEvent);
 });
   </script>
   <script>
