@@ -46,26 +46,25 @@ document.addEventListener("DOMContentLoaded", function() {
         // Clear the existing content of the gallery grid
         galleryGrid.innerHTML = '';
 
-        if (filteredScreenshots.length === 0) {
-          // No screenshots available for the gamertag
-          const noScreenshotsMessage = document.createElement("p");
-          noScreenshotsMessage.textContent = "No screenshots available for this gamertag.";
-          galleryGrid.appendChild(noScreenshotsMessage);
-        } else {
-          // Loop through the filtered screenshots and create the corresponding divs
-          filteredScreenshots.forEach((screenshot) => {
-            const screenshotDiv = document.createElement("div");
-            const screenshotName = screenshot.imageUrl.match(/\/([^/]+)\.png$/)[1]; // Extract the screenshot name from the URL
-            screenshotDiv.classList.add(screenshotName);
-            screenshotDiv.setAttribute("style", `border-radius: 12px; background-image: url('${screenshot.imageUrl}'); width: 47%; height: 300px; background-position: center center;`);
+if (filteredScreenshots.length === 0) {
+  // No screenshots available for the gamertag
+  const noScreenshotsMessage = document.createElement("p");
+  noScreenshotsMessage.textContent = "No screenshots available for this gamertag.";
+  galleryGrid.appendChild(noScreenshotsMessage);
+} else {
+  // Loop through the filtered screenshots and create the corresponding divs
+  filteredScreenshots.forEach((screenshot) => {
+    const screenshotDiv = document.createElement("div");
+    screenshotDiv.classList.add("SS");
+    screenshotDiv.setAttribute("style", `border-radius: 12px; background-image: url('${screenshot.imageUrl}'); width: 47%; height: 300px; background-position: center center;`);
 
-            const creditParagraph = document.createElement("p");
-            creditParagraph.classList.add("credit");
-            creditParagraph.textContent = screenshot.playerName;
+    const creditParagraph = document.createElement("p");
+    creditParagraph.classList.add("credit");
+    creditParagraph.textContent = screenshot.playerName;
 
-            screenshotDiv.appendChild(creditParagraph);
-            galleryGrid.appendChild(screenshotDiv);
-          });
+    screenshotDiv.appendChild(creditParagraph);
+    galleryGrid.appendChild(screenshotDiv);
+  });
         }
       })
       .catch(error => {
