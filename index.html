@@ -53,22 +53,19 @@ document.addEventListener('DOMContentLoaded', function() {
       z-index: 9999;
       transform: translateX(-100%);
       transition: transform 0.3s;
-      background: none;
-      border: none;
     }
 
-    /* Styling for the sliding button image */
-    #play-button::before {
-      content: '';
-      display: block;
+    /* Styling for the invisible clickbox */
+    .clickbox {
+      position: absolute;
       width: 100%;
       height: 100%;
-      background-image: url('/img/play-button-default.png');
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: contain;
+      pointer-events: none;
     }
   `;
+
+  var defaultImage = '/img/play-button-default.png';
+  var hoverImage = '/img/play-button-hover.png';
 
   // Create the <style> tag and append it to the <head> element
   var styleElement = document.createElement('style');
@@ -103,6 +100,11 @@ document.addEventListener('DOMContentLoaded', function() {
         var playButtonElement = document.getElementById('play-button');
         playButtonElement.style.backgroundImage = `url(${defaultImage})`;
       };
+
+      var clickBox = document.createElement('div');
+      clickBox.classList.add('clickbox');
+      playButton.appendChild(clickBox);
+
       document.body.appendChild(playButton);
       setTimeout(function() {
         playButton.style.transform = 'translateX(0)';
