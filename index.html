@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
       height: 300px;
       background-color: #fff;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      transition: left 0.3s;
+      transition: left 0.3s, width 0.3s, height 0.3s;
       z-index: 9998;
     }
 
@@ -99,25 +99,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Function to handle button click event
   function handleButtonClick() {
-    miniWebsiteElement.style.left = '0';
-  }
-
-  // Function to handle arrow click event
-  function handleArrowClick() {
-    miniWebsiteElement.style.width = '100%';
-    miniWebsiteElement.style.height = '100%';
+    if (miniWebsiteElement.classList.contains('enlarged')) {
+      miniWebsiteElement.classList.remove('enlarged');
+      miniWebsiteElement.style.width = '300px';
+      miniWebsiteElement.style.height = '300px';
+      miniWebsiteElement.style.left = '-300px';
+    } else {
+      miniWebsiteElement.classList.add('enlarged');
+      miniWebsiteElement.style.width = '100%';
+      miniWebsiteElement.style.height = '100%';
+      miniWebsiteElement.style.left = '0';
+    }
   }
 
   // Function to handle close button click event
   function handleCloseButtonClick() {
+    miniWebsiteElement.classList.remove('enlarged');
     miniWebsiteElement.style.width = '300px';
     miniWebsiteElement.style.height = '300px';
     miniWebsiteElement.style.left = '-300px';
-  }
-
-  // Function to handle unenlarge button click event
-  function handleUnenlargeButtonClick() {
-    miniWebsiteElement.style.transform = 'rotate(360deg)';
   }
 
   // Function to forward key events to the iframe
@@ -127,7 +127,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Add click event listeners to the buttons
   buttonElement.addEventListener('click', handleButtonClick);
-  arrowElement.addEventListener('click', handleArrowClick);
   closeButtonElement.addEventListener('click', handleCloseButtonClick);
 
   // Add keydown event listener to the window and forward key events to the iframe
