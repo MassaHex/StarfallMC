@@ -32,17 +32,16 @@ document.addEventListener('DOMContentLoaded', function() {
       transition: transform 0.3s;
     }
 
-    /* Styling for the mini website */
-    #mini-website {
+    /* Styling for the overlay */
+    #overlay {
       position: fixed;
       top: 0;
-      left: -100%;
+      left: 0;
       width: 100%;
       height: 100%;
-      background-color: #fff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      transition: left 0.3s;
+      background-color: rgba(0, 0, 0, 0.5);
       z-index: 9998;
+      pointer-events: none;
     }
   `;
 
@@ -57,44 +56,28 @@ document.addEventListener('DOMContentLoaded', function() {
   button.title = 'Minicraft';
   document.body.appendChild(button);
 
-  // Create the mini website
-  var miniWebsite = document.createElement('div');
-  miniWebsite.id = 'mini-website';
-  miniWebsite.innerHTML = '<iframe id="mini-website-iframe" src="/Eaglercraft" style="width: 100%; height: 100%; border: none;"></iframe>';
-  document.body.appendChild(miniWebsite);
+  // Create the overlay
+  var overlay = document.createElement('div');
+  overlay.id = 'overlay';
+  document.body.appendChild(overlay);
 
-  // Get the button, mini website, and iframe elements
+  // Get the button, overlay, and iframe elements
   var buttonElement = document.getElementById('minecraft-button');
-  var miniWebsiteElement = document.getElementById('mini-website');
-  var iframeElement = document.getElementById('mini-website-iframe');
-
-  // Flag to track the state of the mini website (enlarged or not)
-  var isEnlarged = false;
+  var overlayElement = document.getElementById('overlay');
+  var iframeElement = document.createElement('iframe');
+  iframeElement.src = 'https://example.com'; // Replace with the URL of your game
 
   // Function to handle button click event
   function handleButtonClick() {
-    if (isEnlarged) {
-      miniWebsiteElement.style.left = '-100%';
-      buttonElement.style.transform = 'rotate(0deg)';
+    if (iframeElement.parentNode === null) {
+      overlayElement.appendChild(iframeElement);
     } else {
-      miniWebsiteElement.style.left = '0';
-      buttonElement.style.transform = 'rotate(360deg)';
-    }
-    isEnlarged = !isEnlarged;
-  }
-
-  // Function to forward key events to the iframe
-  function forwardKeyEvent(event) {
-    if (isEnlarged) {
-      iframeElement.contentWindow.postMessage({ type: 'keydown', event: event }, '*');
+      overlayElement.removeChild(iframeElement);
     }
   }
 
   // Add click event listener to the button
   buttonElement.addEventListener('click', handleButtonClick);
-
-  // Add keydown event listener to the window and forward key events to the iframe
-  window.addEventListener('keydown', forwardKeyEvent);
 });
   </script>
   <script>
