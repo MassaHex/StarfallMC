@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 100%;
     height: 100%;
     z-index: 20;
-    background-color: rgba(0, 0, 0, 0.5);;
+    background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
     }
   `;
@@ -67,11 +67,16 @@ document.addEventListener('DOMContentLoaded', function() {
   button.id = 'minecraft-button';
   button.title = 'Minicraft';
   document.body.appendChild(button);
+  
+  function redirectToURL() {
+  // Replace 'https://example.com' with the desired URL
+  window.location.href = '/Eaglercraft';
+  }
 
   // Create the mini website
   var miniWebsite = document.createElement('div');
   miniWebsite.id = 'mini-website';
-  miniWebsite.innerHTML = '<div id="IframeCover"><p style="text-align: center;">This game must be played in a out of an iframe. <p style="color: blue; cursor: pointer;" onclick="window.location.href = '/Eaglercraft'">Click Me.</p></p></div><iframe id="mini-website-iframe" src="/Eaglercraft" style="width: 100%; height: 100%; border: none;"></iframe>';
+  miniWebsite.innerHTML = '<div id="IframeCover"><p style="text-align: center;">This game must be played in a out of an iframe. <p style="color: blue; cursor: pointer;" onclick="redirectToGame()">Click Me.</p></p></div><iframe id="mini-website-iframe" src="/Eaglercraft" style="width: 100%; height: 100%; border: none;"></iframe>';
   document.body.appendChild(miniWebsite);
 
   // Get the button, mini website, and iframe elements
