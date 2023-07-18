@@ -8,14 +8,30 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&amp;family=Quicksand:wght@400;600;700&amp;family=Rubik:wght@300;400;600&amp;display=swap" rel="stylesheet">
-  <script>
-    // Create CSS styles for the circular button, mini website, and arrow
-    var styles = `
+ <script>
+    // Create the circular button
+    const button = document.createElement('div');
+    button.id = 'minecraft-button';
+    button.innerHTML = '<img src="minecraft_logo.png" alt="Minecraft Logo" width="30" height="30">';
+    document.body.appendChild(button);
+
+    // Create the mini website
+    const miniWebsite = document.createElement('div');
+    miniWebsite.id = 'mini-website';
+    miniWebsite.innerHTML = `
+      <div id="enlarge-arrow"></div>
+      <div id="close-button">×</div>
+      <iframe src="https://example.com" style="width: 100%; height: 100%; border: none;"></iframe>
+    `;
+    document.body.appendChild(miniWebsite);
+
+    // CSS styles for the circular button, mini website, arrow, and close button
+    const styles = `
       /* Styling for the circular button */
       #minecraft-button {
         position: fixed;
         bottom: 20px;
-        right: 20px;
+        left: 20px;
         width: 50px;
         height: 50px;
         border-radius: 50%;
@@ -30,13 +46,13 @@
       /* Styling for the mini website */
       #mini-website {
         position: fixed;
-        top: 20px;
-        left: -300px;
+        top: 60px;
+        right: 20px;
         width: 300px;
         height: 300px;
         background-color: #fff;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        transition: left 0.3s;
+        transition: right 0.3s;
         z-index: 9998;
       }
 
@@ -51,56 +67,54 @@
         transform: rotate(45deg);
         cursor: pointer;
       }
+
+      /* Styling for the X button */
+      #close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        background-color: #ff0000;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
     `;
 
     // Create the <style> tag and append it to the <head> element
-    var styleElement = document.createElement('style');
+    const styleElement = document.createElement('style');
     styleElement.innerHTML = styles;
     document.head.appendChild(styleElement);
 
-    // Function to create the circular button and mini website
-    function createMinecraftButton() {
-      // Check if viewport width is greater than or equal to 768 pixels
-      if (window.innerWidth >= 768) {
-        // Create the circular button
-        const button = document.createElement('div');
-        button.id = 'minecraft-button';
-        button.innerHTML = '<img src="minecraft_logo.png" alt="Minecraft Logo" width="30" height="30">';
-        document.body.appendChild(button);
+    // Get the button and mini website elements
+    const buttonElement = document.getElementById('minecraft-button');
+    const miniWebsiteElement = document.getElementById('mini-website');
+    const arrowElement = document.getElementById('enlarge-arrow');
+    const closeButtonElement = document.getElementById('close-button');
 
-        // Create the mini website
-        const miniWebsite = document.createElement('div');
-        miniWebsite.id = 'mini-website';
-        miniWebsite.innerHTML = `
-          <div id="enlarge-arrow"></div>
-          <iframe src="/Eaglercraft" style="width: 100%; height: 100%; border: none;"></iframe>
-        `;
-        document.body.appendChild(miniWebsite);
-
-        // Get the button and mini website elements
-        const buttonElement = document.getElementById('minecraft-button');
-        const miniWebsiteElement = document.getElementById('mini-website');
-        const arrowElement = document.getElementById('enlarge-arrow');
-
-        // Function to handle button click event
-        function handleButtonClick() {
-          miniWebsiteElement.style.left = '0';
-        }
-
-        // Function to handle arrow click event
-        function handleArrowClick() {
-          miniWebsiteElement.style.width = '100%';
-          miniWebsiteElement.style.height = '100%';
-        }
-
-        // Add click event listeners to the button and arrow
-        buttonElement.addEventListener('click', handleButtonClick);
-        arrowElement.addEventListener('click', handleArrowClick);
-      }
+    // Function to handle button click event
+    function handleButtonClick() {
+      miniWebsiteElement.style.right = '20px';
     }
 
-    // Call the createMinecraftButton function on page load
-    window.onload = createMinecraftButton;
+    // Function to handle arrow click event
+    function handleArrowClick() {
+      miniWebsiteElement.style.width = '100%';
+      miniWebsiteElement.style.height = '100%';
+    }
+
+    // Function to handle close button click event
+    function handleCloseButtonClick() {
+      miniWebsiteElement.style.right = '-300px';
+    }
+
+    // Add click event listeners to the button, arrow, and close button
+    buttonElement.addEventListener('click', handleButtonClick);
+    arrowElement.addEventListener('click', handleArrowClick);
+    closeButtonElement.addEventListener('click', handleCloseButtonClick);
   </script>
     <script>
 window.addEventListener('load', function() {
