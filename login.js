@@ -331,6 +331,8 @@ window.addEventListener('load', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
+  let overlay = null;
+
   // Get all elements with the class "SS"
   const screenshotDivs = document.querySelectorAll('.SS');
 
@@ -343,39 +345,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add the click event listener to each element
     screenshotDiv.addEventListener('click', function() {
-      // Get the URL of the background image
-      const imageUrl = getBackgroundImageUrl(this);
+      if (!overlay) {
+        // Get the URL of the background image
+        const imageUrl = getBackgroundImageUrl(this);
 
-      // Create a full view overlay element
-      const overlay = document.createElement('div');
-      overlay.classList.add('overlay');
+        // Create a full view overlay element
+        overlay = document.createElement('div');
+        overlay.classList.add('overlay');
 
-      // Create an image element for full view
-      const fullImageView = document.createElement('img');
-      fullImageView.src = imageUrl;
-      fullImageView.classList.add('full-view');
+        // Create an image element for full view
+        const fullImageView = document.createElement('img');
+        fullImageView.src = imageUrl;
+        fullImageView.classList.add('full-view');
 
-      // Append the image element to the overlay
-      overlay.appendChild(fullImageView);
+        // Append the image element to the overlay
+        overlay.appendChild(fullImageView);
 
-      // Append the overlay to the document body
-      document.body.appendChild(overlay);
+        // Append the overlay to the document body
+        document.body.appendChild(overlay);
 
-      // Add a click event listener to the overlay to close it
-      overlay.addEventListener('click', function() {
-        // Remove the overlay from the document body
-        document.body.removeChild(overlay);
-      });
+        // Add a click event listener to the overlay to close it
+        overlay.addEventListener('click', function() {
+          // Remove the overlay from the document body
+          document.body.removeChild(overlay);
+          overlay = null;
+        });
 
-      // Add the cursor style change for zooming out
-      fullImageView.addEventListener('mouseenter', function() {
-        this.style.cursor = 'zoom-out';
-      });
+        // Add the cursor style change for zooming out
+        fullImageView.addEventListener('mouseenter', function() {
+          this.style.cursor = 'zoom-out';
+        });
 
-      // Reset cursor style when leaving the full view image
-      fullImageView.addEventListener('mouseleave', function() {
-        this.style.cursor = 'default';
-      });
+        // Reset cursor style when leaving the full view image
+        fullImageView.addEventListener('mouseleave', function() {
+          this.style.cursor = 'default';
+        });
+      }
     });
   });
 
