@@ -94,11 +94,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (isEnlarged) {
       miniWebsiteElement.style.left = '-100%';
       buttonElement.style.transform = 'rotate(0deg)';
-      arrowElement.style.stroke = '#fff';
+      arrowElement.style.opacity = '1';
     } else {
       miniWebsiteElement.style.left = '0';
       buttonElement.style.transform = 'rotate(45deg)';
-      arrowElement.style.stroke = '#000';
+      arrowElement.style.opacity = '0';
     }
     isEnlarged = !isEnlarged;
   }
