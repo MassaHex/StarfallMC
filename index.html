@@ -86,15 +86,16 @@ document.addEventListener('DOMContentLoaded', function() {
   miniWebsite.innerHTML = `
     <div id="enlarge-arrow"></div>
     <div id="close-button">×</div>
-    <iframe src="/Eaglercraft" style="width: 100%; height: 100%; border: none;"></iframe>
+    <iframe id="mini-website-iframe" src="https://example.com" style="width: 100%; height: 100%; border: none;"></iframe>
   `;
   document.body.appendChild(miniWebsite);
 
-  // Get the button and mini website elements
+  // Get the button, mini website, and iframe elements
   var buttonElement = document.getElementById('minecraft-button');
   var miniWebsiteElement = document.getElementById('mini-website');
   var arrowElement = document.getElementById('enlarge-arrow');
   var closeButtonElement = document.getElementById('close-button');
+  var iframeElement = document.getElementById('mini-website-iframe');
 
   // Function to handle button click event
   function handleButtonClick() {
@@ -109,36 +110,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Function to handle close button click event
   function handleCloseButtonClick() {
+    miniWebsiteElement.style.width = '300px';
+    miniWebsiteElement.style.height = '300px';
     miniWebsiteElement.style.left = '-300px';
   }
 
-  // Add click event listeners to the button, arrow, and close button
+  // Function to handle unenlarge button click event
+  function handleUnenlargeButtonClick() {
+    miniWebsiteElement.style.transform = 'rotate(360deg)';
+  }
+
+  // Function to forward key events to the iframe
+  function forwardKeyEvent(event) {
+    iframeElement.contentWindow.postMessage({ type: 'keypress', event: event }, '*');
+  }
+
+  // Add click event listeners to the buttons
   buttonElement.addEventListener('click', handleButtonClick);
   arrowElement.addEventListener('click', handleArrowClick);
   closeButtonElement.addEventListener('click', handleCloseButtonClick);
-});
-  </script>
-  <script>window.addEventListener('scroll', function() {
-  var scrollToTopBtn = document.getElementById('scrollToTopBtn');
-  
-  if (window.scrollY > window.innerHeight * 0.2) {
-    scrollToTopBtn.style.marginTop = '0px';
-  } else {
-    scrollToTopBtn.style.marginTop = '80px';
-  }
-  
-  // Update the position of the button to stay fixed at the bottom of the viewport
-  var viewportHeight = window.innerHeight;
-  var buttonHeight = scrollToTopBtn.offsetHeight;
-  var buttonOffset = 20;
-  var scrollPosition = window.scrollY + viewportHeight - buttonHeight - buttonOffset;
-  scrollToTopBtn.style.bottom = buttonOffset + 'px';
-  scrollToTopBtn.style.top = scrollPosition + 'px';
-});
 
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+  // Add keydown event listener to the window and forward key events to the iframe
+  window.addEventListener('keydown', forwardKeyEvent);
+
+  // Add transitionend event listener to the mini website to remove the spin animation
+  miniWebsiteElement.addEventListener('transitionend', function() {
+    miniWebsiteElement.style.transform = 'none';
+  });
+});
   </script>
   <script>
 window.addEventListener('load', function() {
