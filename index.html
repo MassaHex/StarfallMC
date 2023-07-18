@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
       var playButtonElement = document.getElementById('play-button');
       playButtonElement.style.transform = 'translateX(-100%)';
       playButtonElement.style.opacity = 0;
-      playButtonElement.onclick = openEagler();
+      playButtonElement.onclick = openEagler;
       setTimeout(function() {
         playButtonElement.remove();
       }, 300);
