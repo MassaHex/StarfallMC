@@ -330,6 +330,63 @@ window.addEventListener('load', function() {
   positionLoadingIcon();
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  // Get all elements with the class "SS"
+  const screenshotDivs = document.querySelectorAll('.SS');
+
+  // Iterate over each screenshotDiv element
+  screenshotDivs.forEach(function(screenshotDiv) {
+    // Add the hover event listener
+    screenshotDiv.addEventListener('mouseenter', function() {
+      this.style.cursor = 'zoom-in';
+    });
+
+    // Add the click event listener to each element
+    screenshotDiv.addEventListener('click', function() {
+      // Get the URL of the background image
+      const imageUrl = getBackgroundImageUrl(this);
+
+      // Create a full view overlay element
+      const overlay = document.createElement('div');
+      overlay.classList.add('overlay');
+
+      // Create an image element for full view
+      const fullImageView = document.createElement('img');
+      fullImageView.src = imageUrl;
+      fullImageView.classList.add('full-view');
+
+      // Append the image element to the overlay
+      overlay.appendChild(fullImageView);
+
+      // Append the overlay to the document body
+      document.body.appendChild(overlay);
+
+      // Add a click event listener to the overlay to close it
+      overlay.addEventListener('click', function() {
+        // Remove the overlay from the document body
+        document.body.removeChild(overlay);
+      });
+
+      // Add the cursor style change for zooming out
+      fullImageView.addEventListener('mouseenter', function() {
+        this.style.cursor = 'zoom-out';
+      });
+
+      // Reset cursor style when leaving the full view image
+      fullImageView.addEventListener('mouseleave', function() {
+        this.style.cursor = 'default';
+      });
+    });
+  });
+
+  // Helper function to get the URL of the background image
+  function getBackgroundImageUrl(element) {
+    const backgroundImage = window.getComputedStyle(element).backgroundImage;
+    const imageUrl = backgroundImage.replace(/^url\(['"]?/, '').replace(/['"]?\)$/, '');
+    return imageUrl;
+  }
+});
+
 // Position the loading icon initially
 positionLoadingIcon();
 
