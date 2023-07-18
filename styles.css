@@ -384,48 +384,6 @@ ul {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.SS1:hover .credit {
-  opacity: 0.9;
-  margin-top: 270px;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.SS2:hover .credit {
-  opacity: 0.9;
-  margin-top: 270px;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.SS3:hover .credit {
-  opacity: 0.9;
-  margin-top: 270px;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.SS4:hover .credit {
-  opacity: 1;
-  margin-top: 270px;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.SS5:hover .credit {
-  opacity: 1;
-  margin-top: 270px;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.SS6:hover .credit {
-  opacity: 1;
-  margin-top: 270px;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.SS7:hover .credit {
-  opacity: 1;
-  margin-top: 270px;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
 .credit {
   color: white;
   transition: all 0.3s ease;
