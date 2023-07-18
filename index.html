@@ -83,6 +83,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (isEnlarged) {
       buttonElement.style.transform = 'rotate(0deg)';
       var playButtonElement = document.getElementById('play-button');
+        playButtonElement.addEventListener('click', function() {
+  window.location.href = '/Eaglercraft';
+});
       playButtonElement.style.transform = 'translateX(-100%)';
       playButtonElement.style.opacity = 0;
       setTimeout(function() {
@@ -106,10 +109,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     isEnlarged = !isEnlarged;
   }
-
-  playButtonElement.addEventListener('click', function() {
-  window.location.href = '/Eaglercraft';
-});
 
   // Function to handle the play button hover event
   function handleButtonHover(event) {
