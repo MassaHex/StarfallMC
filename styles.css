@@ -234,11 +234,24 @@ background: transparent;
   justify-content: center;
   align-items: center;
   z-index: 40;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid #f00;
   background-size: 80px;
   background-image: url('img/Textures/Sculk/Frame1.png');
   transition: background-image 0.5s ease;
   animation: animateMinecraftTexture 2s steps(4) infinite;
+  animation: RGB 10s infinite linear;
+}
+
+@keyframes RGB {
+    /* Define the animation sequence to go through the four frames */
+    0% { border-bottom: 2px solid #f00; }
+    18% { border-bottom: 2px solid #ff7600; }
+    32% { border-bottom: 2px solid #ffd400; }
+    40% { border-bottom: 2px solid #00ff14; }
+    58% { border-bottom: 2px solid #00ff14; }
+    76% { border-bottom: 2px solid #00e7ff; }
+    95% { border-bottom: 2px solid #9d00ff; }
+    100% { border-bottom: 2px solid #9d00ff; } /* Add this line to complete the animation */
 }
 
 .navbar ul {
