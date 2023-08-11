@@ -94,7 +94,7 @@ body {
   position: absolute;
   border: 1px solid red !important;
   border-radius: 30px;
-  color: red;
+  color: red !important;
   bottom: 70px;
   width: 170px !important;
   left: 15px;
