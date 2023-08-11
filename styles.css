@@ -82,7 +82,7 @@ body {
 #popupContainer {
   position: fixed;
   right: 0px;
-  background-color: #fff;
+  background: linear-gradient(45deg, #02c2ff, #2725cb);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   width: 200px;
   height: 200px;
