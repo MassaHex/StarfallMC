@@ -243,15 +243,13 @@ background: transparent;
 }
 
 @keyframes RGB {
-    /* Define the animation sequence to go through the four frames */
     0% { border-bottom: 2px solid #f00; }
-    18% { border-bottom: 2px solid #ff7600; }
-    32% { border-bottom: 2px solid #ffd400; }
-    40% { border-bottom: 2px solid #00ff14; }
-    58% { border-bottom: 2px solid #00ff14; }
-    76% { border-bottom: 2px solid #00e7ff; }
-    95% { border-bottom: 2px solid #9d00ff; }
-    100% { border-bottom: 2px solid #9d00ff; } /* Add this line to complete the animation */
+    14% { border-bottom: 2px solid #ff7600; }
+    28% { border-bottom: 2px solid #ffd400; }
+    42% { border-bottom: 2px solid #00ff14; }
+    57% { border-bottom: 2px solid #00ff14; }
+    72% { border-bottom: 2px solid #00e7ff; }
+    100% { border-bottom: 2px solid #9d00ff; }
 }
 
 .navbar ul {
