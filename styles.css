@@ -137,16 +137,18 @@ body {
   height: 30px;
   padding:0;
   margin:0;
-background: linear-gradient(45deg, #ffffff00, #ffffff00);
+background: transparent;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: Quicksand;
   font-size:15px;
+  color: white !important;
 }
 
 #popupContainer button:hover {
   height: 50px;
+  background: #3498db;
 }
 
 .imageoverlay {
