@@ -109,11 +109,11 @@ body {
   bottom: 70px;
   width: 170px !important;
   left: 15px;
-  background: linear-gradient(45deg, #ffffff00, #ffffff00) !important;
+  background: transparent !important;
 }
 
 #login-button:hover {
-  background: linear-gradient(180deg, #02c2ff, #2725cb);
+  background: #3498db;
 }
 
 #login-button {
