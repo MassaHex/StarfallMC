@@ -6,7 +6,7 @@ body {
   margin: 0;
   padding: 0;
   background-image: url('/img/Textures/Sculk/Frame1.png');
-  background-size: 80px;
+  background-size: 60px;
     transition: background-image 0.5s ease;
   animation: animateMinecraftTexture 2s steps(4) infinite;
 }
@@ -228,7 +228,9 @@ body {
   z-index: 40;
   border-bottom: 2px solid #333;
   background-size: 60px;
-  background-image: url('img/Grass.jpg');
+  background-image: url('img/Textures/Sculk/Frame1.png');
+  transition: background-image 0.5s ease;
+  animation: animateMinecraftTexture 2s steps(4) infinite;
 }
 
 .navbar ul {
