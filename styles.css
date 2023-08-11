@@ -140,7 +140,7 @@ body {
 background: linear-gradient(45deg, #ffffff00, #ffffff00);
   border: none;
   cursor: pointer;
-  transition: all 1s ease;
+  transition: all 0.3s ease;
   font-family: Quicksand;
   font-size:15px;
 }
