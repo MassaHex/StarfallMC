@@ -5,8 +5,19 @@ body {
   font-family: Quicksand;
   margin: 0;
   padding: 0;
-  background-image: url('img/Dirt.jpg');
-  background-size: 60px;
+  background-image: url('/img/Textures/Sculk/Frame1.png');
+  background-size: 80px;
+    transition: background-image 0.5s ease;
+  animation: animateMinecraftTexture 2s steps(4) infinite;
+}
+
+@keyframes animateMinecraftTexture {
+    /* Define the animation sequence to go through the four frames */
+    0% { background-image: url('/img/Textures/Sculk/Frame1.png'); }
+    25% { background-image: url('/img/Textures/Sculk/Frame2.png'); }
+    50% { background-image: url('/img/Textures/Sculk/Frame3.png'); }
+    75% { background-image: url('/img/Textures/Sculk/Frame4.png'); }
+    100% { background-image: url('/img/Textures/Sculk/Frame1.png'); } /* Loop back to the first frame */
 }
 
 #minecraft-button {
