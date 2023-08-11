@@ -134,10 +134,9 @@ body {
 background: transparent;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 1s ease;
   font-family: Quicksand;
   font-size:15px;
-  transition: background 2s ease;
 }
 
 #popupContainer button:hover {
