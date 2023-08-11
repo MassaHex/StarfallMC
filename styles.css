@@ -140,7 +140,7 @@ body {
 }
 
 #popupContainer button:hover {
-  background-color: #cccccc;
+  background-color: ccc;
   height: 50px;
 }
 
@@ -284,7 +284,7 @@ h2 {
 }
 
 h4 {
-  color: #545454;
+  color: #ccc;
 }
 
 p {
