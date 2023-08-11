@@ -146,7 +146,6 @@ background: linear-gradient(45deg, #ffffff00, #ffffff00);
 }
 
 #popupContainer button:hover {
-  background: linear-gradient(180deg, #02c2ff, #2725cb);
   height: 50px;
 }
 
