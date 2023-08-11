@@ -238,7 +238,7 @@ background: transparent;
   background-size: 80px;
   background-image: url('img/Textures/Sculk/Frame1.png');
   transition: background-image 0.5s ease;
-  animation: animateMinecraftTexture 2s steps(4) infinite, RGB 20s infinite linear;
+  animation: animateMinecraftTexture 2s steps(4) infinite;
 }
 
 @keyframes RGB {
@@ -249,12 +249,6 @@ background: transparent;
     57% { border-bottom: 2px solid #00ff14; }
     72% { border-bottom: 2px solid #00e7ff; }
     100% { border-bottom: 2px solid #9d00ff; }
-    72% { border-bottom: 2px solid #00e7ff; }
-    57% { border-bottom: 2px solid #00ff14; }
-    42% { border-bottom: 2px solid #00ff14; }
-    28% { border-bottom: 2px solid #ffd400; }
-    14% { border-bottom: 2px solid #ff7600; }
-    0% { border-bottom: 2px solid #f00; }
 }
 
 .navbar ul {
