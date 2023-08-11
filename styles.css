@@ -238,7 +238,7 @@ background: transparent;
   background-size: 80px;
   background-image: url('img/Textures/Sculk/Frame1.png');
   transition: background-image 0.5s ease;
-  animation: animateMinecraftTexture 2s steps(4) infinite, RGB 10s infinite linear;
+  animation: animateMinecraftTexture 2s steps(4) infinite, RGB 20s infinite linear;
 }
 
 @keyframes RGB {
