@@ -295,7 +295,7 @@ function reloadPageWithDelay(delay) {
 // Check if the player has a token on page load
 window.addEventListener('load', function() {
   var token = getTokenFromCookie(); // Assuming you have the function to retrieve the token from the cookie
-  var url = 'https://gamertag-info-search.tres3mincraft.repl.co/?username=Test';
+  var url = 'https://f7ee9264-8785-48ba-97ae-4174a51bb0bc-00-jbker622vd5o.picard.replit.dev/?username=Test';
 
   if (token) {
     showLoadingAnimation(); // Show the loading animation immediately
