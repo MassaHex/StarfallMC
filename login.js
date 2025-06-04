@@ -92,7 +92,7 @@ function updateProfileInfo() {
 
   if (xboxGamertag) {
     // Make a request to retrieve the profile information
-    fetch(`https://gamertag-info-search.tres3mincraft.repl.co/?username=${xboxGamertag}`)
+    fetch(`https://f7ee9264-8785-48ba-97ae-4174a51bb0bc-00-jbker622vd5o.picard.replit.dev/?username=${xboxGamertag}`)
       .then((response) => {
         if (response.ok) {
           return response.json();
